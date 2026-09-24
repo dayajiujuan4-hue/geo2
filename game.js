@@ -10,7 +10,7 @@
 ========================= */
 
 const GEOJSON_URL =
-  "https://raw.githubusercontent.com/BarbarossaWang/cn-atlas/main/provinces.json";
+  "https://unpkg.com/cn-atlas/provinces.json";
 
 
 /* =========================
