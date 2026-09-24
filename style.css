@@ -1,34 +1,41 @@
 :root {
 
-  --background: #edf0f2;
+  --bg: #101214;
 
-  --panel: #ffffff;
+  --bg2: #171a1e;
 
-  --panel-soft: #f7f8f9;
+  --panel: #1b1f24;
 
-  --text: #182028;
+  --panel2: #20252b;
 
-  --muted: #7b8790;
+  --border: #30363d;
 
-  --border: #dce1e5;
+  --text: #f2f4f6;
 
-  --map: #dfe4e8;
+  --muted: #8d969f;
 
-  --accent: #d74646;
+  --map: #30363b;
 
-  --accent-dark: #ad3030;
+  --map-hover: #444c53;
 
-  --success: #3d8b67;
+  --red: #e44848;
+
+  --red-dark: #a92f32;
+
+  --red-glow: rgba(228,72,72,.45);
+
+  --green: #55c58a;
 
 }
 
 
-/* =========================
-   基本
-========================= */
-
 * {
   box-sizing: border-box;
+}
+
+
+html {
+  min-height: 100%;
 }
 
 
@@ -39,12 +46,18 @@ body {
   min-height: 100vh;
 
   background:
+
     radial-gradient(
-      circle at 20% 10%,
-      rgba(255,255,255,.9),
+      circle at 50% -20%,
+      rgba(228,72,72,.10),
       transparent 35%
     ),
-    var(--background);
+
+    linear-gradient(
+      145deg,
+      #0e1012,
+      #171a1e
+    );
 
   color: var(--text);
 
@@ -53,61 +66,97 @@ body {
     "Yu Gothic",
     system-ui,
     sans-serif;
+
+  transition:
+    background .2s ease;
+
 }
 
 
-button,
-input {
-  font: inherit;
+/* =========================================================
+   正解フラッシュ
+========================================================= */
+
+.correct-flash {
+
+  animation:
+    correct-screen .18s ease;
+
 }
 
 
-/* =========================
-   全体
-========================= */
+@keyframes correct-screen {
+
+  50% {
+
+    background:
+      radial-gradient(
+        circle at 50% 30%,
+        rgba(228,72,72,.18),
+        transparent 45%
+      ),
+      #171a1e;
+
+  }
+
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
 
 .game {
 
-  width: min(
-    1400px,
-    calc(100% - 32px)
-  );
+  width:
+    min(
+      1500px,
+      calc(100% - 40px)
+    );
 
-  margin: 28px auto 50px;
+  margin:
+    30px auto 50px;
 
 }
 
 
-/* =========================
-   ヘッダー
-========================= */
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header {
 
   display: flex;
 
-  justify-content: space-between;
+  justify-content:
+    space-between;
 
-  align-items: flex-end;
+  align-items:
+    flex-end;
 
-  gap: 20px;
+  gap: 25px;
 
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 
 }
 
 
 .eyebrow {
 
-  margin: 0 0 6px;
+  margin:
+    0 0 5px;
 
-  color: var(--accent);
+  color:
+    var(--red);
 
-  font-size: 11px;
+  font-size:
+    10px;
 
-  font-weight: 800;
+  font-weight:
+    900;
 
-  letter-spacing: .18em;
+  letter-spacing:
+    .28em;
 
 }
 
@@ -116,110 +165,195 @@ h1 {
 
   margin: 0;
 
-  font-size: clamp(
-    32px,
-    5vw,
-    52px
-  );
+  font-size:
+    clamp(
+      34px,
+      5vw,
+      58px
+    );
 
-  letter-spacing: -.05em;
+  line-height:
+    1;
+
+  letter-spacing:
+    -.06em;
 
 }
 
 
 .description {
 
-  margin: 8px 0 0;
+  margin:
+    11px 0 0;
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
-  font-size: 14px;
+  font-size:
+    13px;
 
-  line-height: 1.7;
+  line-height:
+    1.7;
 
 }
 
 
+/* =========================================================
+   SCORE
+========================================================= */
+
 .score {
 
-  min-width: 130px;
+  position:
+    relative;
 
-  padding: 14px 20px;
+  min-width:
+    150px;
 
-  background: var(--panel);
+  padding:
+    15px 25px;
 
-  border: 1px solid var(--border);
+  background:
+    linear-gradient(
+      145deg,
+      #23282e,
+      #171b1f
+    );
 
-  border-radius: 16px;
+  border:
+    1px solid var(--border);
 
-  text-align: center;
+  border-radius:
+    16px;
+
+  box-shadow:
+    0 15px 40px
+    rgba(0,0,0,.25);
+
+  text-align:
+    center;
+
+}
+
+
+.score::before {
+
+  content: "";
+
+  position:
+    absolute;
+
+  top: 0;
+  left: 20%;
+  right: 20%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--red),
+      transparent
+    );
 
 }
 
 
 .score span {
 
-  font-size: 38px;
+  display:
+    inline-block;
 
-  font-weight: 900;
+  font-size:
+    42px;
+
+  font-weight:
+    900;
+
+  line-height:
+    1;
 
 }
 
 
 .score small {
 
-  color: var(--muted);
+  margin-left:
+    3px;
 
-  font-size: 15px;
+  color:
+    var(--muted);
+
+  font-size:
+    14px;
 
 }
 
 
-/* =========================
-   レイアウト
-========================= */
+/* =========================================================
+   LAYOUT
+========================================================= */
 
 .game-layout {
 
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
-    minmax(0, 1.7fr)
-    minmax(310px, .7fr);
+    minmax(0, 1.75fr)
+    minmax(320px, .7fr);
 
-  gap: 18px;
+  gap:
+    18px;
 
-  align-items: start;
+  align-items:
+    start;
 
 }
 
 
-/* =========================
-   地図
-========================= */
+/* =========================================================
+   MAP PANEL
+========================================================= */
 
 .map-card {
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  background: var(--panel);
+  background:
+    rgba(27,31,36,.94);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: 18px;
+  border-radius:
+    20px;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.28);
 
 }
 
 
 .map-header {
 
-  height: 48px;
+  display:
+    flex;
 
-  display: flex;
+  justify-content:
+    space-between;
 
-  align-items: center;
+  align-items:
+    center;
 
-  padding: 0 18px;
+  height:
+    50px;
+
+  padding:
+    0 18px;
 
   border-bottom:
     1px solid var(--border);
@@ -229,465 +363,856 @@ h1 {
 
 .status {
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  gap: 9px;
+  gap:
+    9px;
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
-  font-size: 12px;
+  font-family:
+    monospace;
+
+  font-size:
+    11px;
+
+  letter-spacing:
+    .04em;
 
 }
 
 
 .status-dot {
 
-  width: 8px;
+  width:
+    7px;
 
-  height: 8px;
+  height:
+    7px;
 
-  border-radius: 50%;
+  border-radius:
+    50%;
 
-  background: var(--accent);
+  background:
+    var(--red);
+
+  box-shadow:
+    0 0 12px
+    var(--red-glow);
 
 }
 
 
+.status.ready .status-dot {
+
+  background:
+    var(--green);
+
+  box-shadow:
+    0 0 12px
+    rgba(85,197,138,.5);
+
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
 .map-container {
 
-  padding: 15px;
+  position:
+    relative;
+
+  padding:
+    15px;
+
+  background:
+
+    radial-gradient(
+      ellipse at center,
+      #24292e,
+      #171a1d
+    );
 
 }
 
 
 #china-map {
 
-  display: block;
+  display:
+    block;
 
-  width: 100%;
+  width:
+    100%;
 
-  height: auto;
+  height:
+    auto;
 
 }
 
 
-/* 地図上の地域 */
+/* 地図背景 */
+
+.map-background {
+
+  fill:
+    transparent;
+
+}
+
+
+/* 地域 */
 
 .region {
 
-  fill: var(--map);
+  fill:
+    var(--map);
 
-  stroke: #ffffff;
+  stroke:
+    #171a1d;
 
-  stroke-width: .8;
+  stroke-width:
+    1.1;
 
-  vector-effect: non-scaling-stroke;
+  vector-effect:
+    non-scaling-stroke;
+
+  cursor:
+    default;
 
   transition:
-
-    fill .25s ease,
-
-    filter .25s ease;
+    fill .3s ease,
+    filter .3s ease;
 
 }
 
+
+/* マウスを乗せた時 */
 
 .region:hover {
 
-  filter:
-    brightness(.96);
+  fill:
+    var(--map-hover);
 
 }
 
+
+/* 正解 */
 
 .region.found {
 
-  fill: var(--accent);
+  fill:
+    var(--red);
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(228,72,72,.25)
+    );
 
 }
 
+
+/* 正解した瞬間 */
 
 .region.just-found {
 
   animation:
-    paint-region .55s ease;
+    region-paint
+    .85s
+    cubic-bezier(.2,.8,.2,1);
 
 }
 
 
-@keyframes paint-region {
+@keyframes region-paint {
 
   0% {
 
-    fill: #ffd4d4;
+    fill:
+      #ffffff;
+
+    filter:
+      drop-shadow(
+        0 0 18px
+        rgba(255,255,255,.8)
+      );
 
   }
 
-  40% {
+  35% {
 
-    fill: #ea6b6b;
+    fill:
+      #ff8585;
+
+    filter:
+      drop-shadow(
+        0 0 15px
+        var(--red-glow)
+      );
 
   }
 
   100% {
 
-    fill: var(--accent);
+    fill:
+      var(--red);
 
   }
 
 }
 
 
-.map-footer {
+/* コンプリート */
 
-  padding: 4px 18px 16px;
+.region.complete-glow {
 
-  color: var(--muted);
-
-  font-size: 11px;
-
-  text-align: right;
+  animation:
+    complete-region
+    1.4s
+    ease;
 
 }
 
 
-/* =========================
-   サイドパネル
-========================= */
+@keyframes complete-region {
+
+  50% {
+
+    fill:
+      #ff8585;
+
+    filter:
+      drop-shadow(
+        0 0 15px
+        rgba(255,100,100,.8)
+      );
+
+  }
+
+}
+
+
+/* 国境 */
+
+.map-outline path {
+
+  fill:
+    none;
+
+  stroke:
+    rgba(255,255,255,.22);
+
+  stroke-width:
+    1.3;
+
+  vector-effect:
+    non-scaling-stroke;
+
+  pointer-events:
+    none;
+
+}
+
+
+/* =========================================================
+   MAP FOOTER
+========================================================= */
+
+.map-footer {
+
+  padding:
+    3px 18px 15px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+  text-align:
+    right;
+
+}
+
+
+/* =========================================================
+   SIDE PANEL
+========================================================= */
 
 .side-panel {
 
-  display: grid;
+  display:
+    grid;
 
-  gap: 14px;
+  gap:
+    13px;
 
 }
 
 
-/* =========================
-   カード
-========================= */
+/* =========================================================
+   CARDS
+========================================================= */
 
 .input-card,
 .progress-card,
 .found-card {
 
-  padding: 18px;
+  padding:
+    18px;
 
-  background: var(--panel);
+  background:
+    linear-gradient(
+      145deg,
+      #20252b,
+      #191d21
+    );
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: 18px;
+  border-radius:
+    17px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(0,0,0,.18);
 
 }
 
 
-/* =========================
-   入力
-========================= */
+/* =========================================================
+   INPUT
+========================================================= */
 
 .input-card label {
 
-  display: block;
+  display:
+    block;
 
-  margin-bottom: 9px;
+  margin-bottom:
+    9px;
 
-  font-size: 13px;
+  color:
+    #dfe3e6;
 
-  font-weight: 800;
+  font-size:
+    12px;
+
+  font-weight:
+    800;
 
 }
 
 
 .input-row {
 
-  display: flex;
+  display:
+    flex;
 
-  gap: 8px;
+  gap:
+    7px;
 
 }
 
 
 #answer {
 
-  min-width: 0;
+  width:
+    100%;
 
-  width: 100%;
+  min-width:
+    0;
 
-  height: 48px;
+  height:
+    49px;
 
-  padding: 0 14px;
+  padding:
+    0 14px;
 
-  border: 1px solid var(--border);
+  background:
+    #101316;
 
-  border-radius: 11px;
+  border:
+    1px solid #353b42;
 
-  outline: none;
+  border-radius:
+    11px;
+
+  outline:
+    none;
+
+  color:
+    white;
+
+  font-size:
+    15px;
+
+  transition:
+    border .2s ease,
+    box-shadow .2s ease;
+
+}
+
+
+#answer::placeholder {
+
+  color:
+    #626b73;
 
 }
 
 
 #answer:focus {
 
-  border-color: var(--accent);
+  border-color:
+    var(--red);
 
   box-shadow:
     0 0 0 3px
-    rgba(215,70,70,.12);
+    rgba(228,72,72,.12);
 
 }
 
 
+#answer.input-error {
+
+  animation:
+    input-shake
+    .35s
+    ease;
+
+  border-color:
+    var(--red);
+
+}
+
+
+@keyframes input-shake {
+
+  20% {
+    transform:
+      translateX(-5px);
+  }
+
+  40% {
+    transform:
+      translateX(5px);
+  }
+
+  60% {
+    transform:
+      translateX(-3px);
+  }
+
+  80% {
+    transform:
+      translateX(3px);
+  }
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
 .input-row button {
 
-  flex: 0 0 auto;
+  height:
+    49px;
 
-  height: 48px;
+  padding:
+    0 18px;
 
-  padding: 0 18px;
+  border:
+    none;
 
-  border: none;
+  border-radius:
+    11px;
 
-  border-radius: 11px;
+  background:
+    linear-gradient(
+      145deg,
+      #e84d4d,
+      #c6383b
+    );
 
-  background: var(--accent);
+  color:
+    white;
 
-  color: white;
+  font-weight:
+    900;
 
-  font-weight: 800;
+  box-shadow:
+    0 7px 18px
+    rgba(200,56,59,.22);
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
 
 }
 
 
 .input-row button:hover {
 
-  background: var(--accent-dark);
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 10px 24px
+    rgba(200,56,59,.32);
 
 }
 
 
+.input-row button:active {
+
+  transform:
+    translateY(1px);
+
+}
+
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+
 .feedback {
 
-  min-height: 20px;
+  min-height:
+    20px;
 
-  margin: 10px 2px 0;
+  margin:
+    10px 2px 0;
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
-  font-size: 12px;
+  font-size:
+    11px;
 
 }
 
 
 .feedback.correct {
 
-  color: var(--success);
+  color:
+    var(--green);
 
-  font-weight: 800;
+  font-weight:
+    800;
 
 }
 
 
 .feedback.error {
 
-  color: var(--accent);
+  color:
+    #ef6868;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
 }
 
 
-/* =========================
-   進捗
-========================= */
+/* =========================================================
+   PROGRESS
+========================================================= */
 
 .progress-title {
 
-  display: flex;
+  display:
+    flex;
 
-  justify-content: space-between;
+  justify-content:
+    space-between;
 
-  margin-bottom: 10px;
+  margin-bottom:
+    9px;
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
-  font-size: 12px;
+  font-family:
+    monospace;
+
+  font-size:
+    10px;
+
+  letter-spacing:
+    .08em;
 
 }
 
 
 .progress-title strong {
 
-  color: var(--text);
+  color:
+    white;
 
 }
 
 
 .progress-track {
 
-  height: 9px;
+  height:
+    8px;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  background: #e8ebed;
+  background:
+    #101316;
 
-  border-radius: 999px;
+  border-radius:
+    999px;
 
 }
 
 
 .progress-bar {
 
-  width: 0;
+  width:
+    0;
 
-  height: 100%;
+  height:
+    100%;
 
-  background: var(--accent);
+  background:
+    linear-gradient(
+      90deg,
+      #a82d32,
+      #f15a5a
+    );
 
-  border-radius: inherit;
+  border-radius:
+    inherit;
+
+  box-shadow:
+    0 0 12px
+    var(--red-glow);
 
   transition:
-    width .3s ease;
+    width .45s
+    cubic-bezier(.2,.8,.2,1);
 
 }
 
 
-/* =========================
-   正解リスト
-========================= */
+/* =========================================================
+   FOUND LIST
+========================================================= */
 
 .found-header {
 
-  display: flex;
+  display:
+    flex;
 
-  justify-content: space-between;
+  justify-content:
+    space-between;
 
-  margin-bottom: 12px;
+  margin-bottom:
+    12px;
 
-  font-size: 13px;
+  color:
+    #dfe3e6;
 
-  font-weight: 800;
+  font-size:
+    12px;
+
+  font-weight:
+    800;
 
 }
 
 
 .found-header strong {
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
 }
 
 
 .found-list {
 
-  display: flex;
+  display:
+    flex;
 
-  flex-wrap: wrap;
+  flex-wrap:
+    wrap;
 
-  gap: 7px;
+  gap:
+    6px;
 
-  max-height: 280px;
+  max-height:
+    285px;
 
-  overflow-y: auto;
+  overflow-y:
+    auto;
 
-}
-
-
-.found-item,
-.empty {
-
-  padding: 6px 9px;
-
-  border-radius: 8px;
-
-  background: var(--panel-soft);
-
-  font-size: 12px;
-
-}
-
-
-.empty {
-
-  color: var(--muted);
+  padding-right:
+    3px;
 
 }
 
 
 .found-item {
 
+  padding:
+    6px 9px;
+
+  background:
+    rgba(228,72,72,.09);
+
+  border:
+    1px solid
+    rgba(228,72,72,.18);
+
+  border-radius:
+    7px;
+
+  color:
+    #f0aaaa;
+
+  font-size:
+    11px;
+
   animation:
-    appear .2s ease;
+    found-in
+    .25s
+    ease;
 
 }
 
 
-@keyframes appear {
+@keyframes found-in {
 
   from {
 
-    opacity: 0;
+    opacity:
+      0;
 
     transform:
-      translateY(4px);
+      translateY(5px)
+      scale(.96);
 
   }
 
   to {
 
-    opacity: 1;
+    opacity:
+      1;
 
     transform:
-      translateY(0);
+      translateY(0)
+      scale(1);
 
   }
 
 }
 
 
-/* =========================
-   リセット
-========================= */
+.empty {
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 .reset-button {
 
-  height: 44px;
+  height:
+    43px;
+
+  background:
+    transparent;
 
   border:
     1px solid var(--border);
 
-  border-radius: 11px;
+  border-radius:
+    11px;
 
-  background: transparent;
+  color:
+    var(--muted);
 
-  color: var(--muted);
+  font-size:
+    11px;
 
-  font-weight: 700;
+  font-weight:
+    700;
+
+  transition:
+    all .2s ease;
 
 }
 
 
 .reset-button:hover {
 
-  background: white;
+  background:
+    #20252a;
 
-  color: var(--text);
+  color:
+    white;
+
+  border-color:
+    #464e56;
 
 }
 
 
-/* =========================
-   スマホ
-========================= */
+/* =========================================================
+   COMPLETE
+========================================================= */
+
+.game-complete
+  .score {
+
+  border-color:
+    rgba(85,197,138,.4);
+
+}
+
+
+.game-complete
+  .score span {
+
+  color:
+    var(--green);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 900px) {
 
   .game-layout {
 
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
 
   }
 
@@ -701,49 +1226,67 @@ h1 {
     width:
       calc(100% - 18px);
 
-    margin-top: 12px;
+    margin:
+      15px auto 30px;
 
   }
 
 
   .header {
 
-    align-items: flex-start;
+    align-items:
+      flex-start;
 
   }
 
 
   .score {
 
-    min-width: 90px;
+    min-width:
+      90px;
+
+    padding:
+      12px;
 
   }
 
 
   .score span {
 
-    font-size: 30px;
+    font-size:
+      30px;
 
   }
 
 
-  .game-layout {
+  .description {
 
-    gap: 12px;
+    font-size:
+      11px;
 
   }
 
 
   .input-row {
 
-    flex-direction: column;
+    flex-direction:
+      column;
 
   }
 
 
   .input-row button {
 
-    width: 100%;
+    width:
+      100%;
+
+  }
+
+
+  .map-container {
+
+    padding:
+      5px;
 
   }
 
