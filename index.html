@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>中国いえるかな？</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <main class="game">
+
+    <header class="header">
+
+      <div class="title-area">
+        <p class="eyebrow">CHINA GEOGRAPHY GAME</p>
+
+        <h1>中国いえるかな？</h1>
+
+        <p class="description">
+          思いついた地域を入力して、<br>
+          中国地図をどんどん塗っていこう。
+        </p>
+      </div>
+
+      <div class="score">
+        <span id="score">0</span>
+        <small>/ 34</small>
+      </div>
+
+    </header>
+
+
+    <section class="game-layout">
+
+      <!-- 地図 -->
+      <section class="map-card">
+
+        <div class="map-header">
+
+          <div class="status">
+            <span class="status-dot"></span>
+            <span id="status-text">
+              地図を読み込んでいます
+            </span>
+          </div>
+
+        </div>
+
+        <div class="map-container">
+
+          <svg
+            id="china-map"
+            viewBox="0 0 900 650"
+            aria-label="中国地図">
+          </svg>
+
+        </div>
+
+        <div class="map-footer">
+          正解した地域が地図上で赤く塗られます。
+        </div>
+
+      </section>
+
+
+      <!-- 操作パネル -->
+      <aside class="side-panel">
+
+
+        <section class="input-card">
+
+          <label for="answer">
+            地域名を入力
+          </label>
+
+          <form id="answer-form">
+
+            <div class="input-row">
+
+              <input
+                id="answer"
+                type="text"
+                placeholder="例：北京、浙江、四川"
+                autocomplete="off"
+                maxlength="30"
+              >
+
+              <button type="submit">
+                回答
+              </button>
+
+            </div>
+
+          </form>
+
+          <p id="feedback" class="feedback">
+            思いついた地域から入力してください。
+          </p>
+
+        </section>
+
+
+        <section class="progress-card">
+
+          <div class="progress-title">
+
+            <span>COMPLETE</span>
+
+            <strong id="progress-percent">
+              0%
+            </strong>
+
+          </div>
+
+          <div class="progress-track">
+
+            <div
+              id="progress-bar"
+              class="progress-bar">
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section class="found-card">
+
+          <div class="found-header">
+
+            <span>答えた地域</span>
+
+            <strong id="found-count">
+              0
+            </strong>
+
+          </div>
+
+          <div id="found-list" class="found-list">
+
+            <span class="empty">
+              まだありません
+            </span>
+
+          </div>
+
+        </section>
+
+
+        <button
+          id="reset-button"
+          class="reset-button"
+          type="button">
+
+          ゲームをリセット
+
+        </button>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+
+  <!-- D3.js -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <!-- ゲームデータ -->
+  <script src="js/data.js"></script>
+
+  <!-- ゲーム本体 -->
+  <script src="js/game.js"></script>
+
+</body>
+</html>
